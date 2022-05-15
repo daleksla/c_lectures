@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/* HI, im a comment}
+\PYG{c+cm}{ * The program doesn\PYGZsq{}t recognise me as anything valid}
+\PYG{c+cm}{ * won\PYGZsq{}t affect your code */}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}\PYG{+w}{ }\PYG{c+cm}{/* there\PYGZsq{}s different ways of writing this}
+\PYG{c+cm}{                * this is the easiest */}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{     }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{;}\PYG{+w}{ }\PYG{c+cm}{/* statement, therefore semicolon */}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

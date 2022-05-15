@@ -1,0 +1,152 @@
+\documentclass{beamer}
+\usecolortheme{fly}
+
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+\usepackage{minted}
+
+\title{C Lectures}
+\subtitle{1.Introduction to C}
+\author{Salih MSA}
+
+\begin{document}
+	\frame{\titlepage}
+	
+	\frame{
+	    \frametitle{Abstract}
+	    By the end of this presentation, you would've understood the following:
+	    
+	    \begin{itemize}
+	        \item Why to learn C
+	        \item The structure of C programs
+	        \item How to run C programs
+	        \item The purpose and basic usage of a C compiler
+	    \end{itemize}
+	}
+	
+	\frame{
+		\frametitle{Why learn C?}
+		\begin{itemize}
+			\item C is highly efficient - used in operating systems, embedding systems, ML/AI, back-end for other languages
+			\item C is simplistic - has concise set of keywords to express computation. Two benefits: less time spent learning specifically about the quirks of the C language and how to program in it, whilst allowing you to appreciate the motivations and features in other programming languages to ease more complex computation
+			\item C gives a birds-eye view into workings of a computer - helps visualise the inner workings of computer systems (such as how programs are organised at a fundamental level in memory, CPU manipulation, etc.) 
+		\end{itemize}
+
+		You get the point, I like C and it's a good language, certainly as a starting point.
+	}
+	
+	\frame{
+		\frametitle{How to build your first program}
+		\framesubtitle{Structure - Theory}
+		
+		In C, source code are stored in files with the extension `.c' (e.g. my\_first\_program.c). Code to be accessed in other files are stored in files with the extension `.h` \footnotemark (e.g. my\_library.h)
+
+	    Each *statement* in C, regardless of the file it's located in, ends with a semicolon. 
+	    
+	    One of the .c files needs to contain a block of code called `main', which the program calls first to run the program. \footnotemark
+	    
+	    \footnotetext[1]{This is an over-simplification: .h are typically limited to the function prototypes, and are linked with the actual code (typically written in .c files) later. But .h files can be used for storing whatever you want despite any drawbacks so I'll live with the equivocation for now}
+	    \footnotetext[2]{This CAN be changed, certainly Microsoft Visual Stdio let's you do so. But seriously, everyone likes main}
+	}
+
+	\frame{
+		\frametitle{How to build your first program}
+		\framesubtitle{Structure - Example}
+
+	    Create a source code file called `my\_first\_program.c' and put the following code inside of it:
+
+        \inputminted{c}{basic_c.c}
+
+    }
+
+	\frame{
+		\frametitle{How to build your first program}
+		\framesubtitle{Compiling - Theory}
+
+	    Compiling is the ``transformation from source code into machine code"\footnotemark.  In laments terms, English code (or any other language) means nothing to your processing units - it needs to be translated into ones and zeros as is what they typically deal with. 
+	    Luckily, all that YOU need to do is find one of hundreds of programs to do it for you. The main one we will be using is called `gcc'\footnotemark and it is arguably the most popular variant amongst C compilers.
+
+        By default, C compilers will create an executable called `a.out' to then be run.
+	    
+	    \footnotetext[3]{\url{https://www.cs.utah.edu/~germain/PPS/Topics/C_Language/compiling_C_programs.html}}
+        \footnotetext[4]{\url{https://gcc.gnu.org/}}
+    }
+
+	\frame{
+		\frametitle{How to build your first program}
+		\framesubtitle{Compiling - Example}
+
+	    Open a terminal window and navigate to the same directory the code was before. The first of the following commands compiles and creates the executable, the second actually runs the program:
+	    
+        \inputminted{sh}{compile_and_run.sh}
+        
+        Note that there won't be output of any significance as all we've done is tell a program to exit as it's first instruction. So let's make something more interesting!
+    }
+	
+	\frame{
+		\frametitle{How to build your first *useful* program}
+		\framesubtitle{Pre-processor commands}
+	
+	    To issue instructions to the C compiler, several directives have been created. Each directive begins with a `\#', with each telling the compiler to do certain things:
+	    
+	    \begin{itemize}
+	        \item \#include \<insert-file-here\> - copies the code from the specified file
+	        \item \#define insert-name-here insert-val-here - creates a label (called macros) which can be referenced anywhere to automatically paste it's value in directly - this includes lines of code
+	        \item \#undef insert-name-here - deletes the knowledge of the label defined above
+	        \item \#ifdef / \#ifndef - conditional statements where actions are done based on presence of labels (if defined, if not defined)
+	    \end{itemize}
+	    
+	    There's more commands, but these commands, especially the first one, are most common. For now, just know you'll need to use the first one to be able to do anything useful.
+	}
+
+	\frame{
+		\frametitle{How to build your first *useful* program}
+		\framesubtitle{More about \#include}
+	
+	    There's a number of useful `libraries' which can be used. To name a few:
+	    
+	    \begin{itemize}
+	        \item stdio.h - contains input/output functions (such as printf (printing), reading from line (fgets))
+	        \item stdlib.h - contains various general-use functions and datatypes \footnotemark
+	        \item math.h - contains math functions \footnotemark
+	        \item string.h - contains string manipulation functions
+	    \end{itemize}
+	
+	    \footnotetext[5]{Technically it doesn't contain datatypes, rather aliases to datatypes (known as typedefs). And some of the `functions' are macros. But again, not really detail needed for now}
+	    \footnotetext[6]{This is an oddball in terms of C libraries. Unlike the other C headers, you have to manually link the actual code at compilation stage. Linking is a subject in it's own right but essentially you just add `-l m' to the gcc command}
+	}
+
+	\frame{
+		\frametitle{How to build your first *useful* program}
+		\framesubtitle{Writing the useful program}
+		
+		In the following code, we include the IO library and call the classic print functions before exiting. We'll get more into calling functions and stuff later but one must go through the rite of printing ``Hello World" before doing anything else.
+	
+	    Write the following code in a file called `my\_first\_useful\_program.c':
+	    \inputminted{c}{useful_program.c}
+
+    }
+ 
+ 	\frame{
+		\frametitle{How to build your first *useful* program}
+		\framesubtitle{Running the useful program}   
+
+	    Compile and run using the following commands \footnotemark:
+        \inputminted{sh}{compile_and_run2.sh}
+    
+        \footnotetext[7]{Note that the only difference in the building-and-running commands from before was the change in the filename - please remember this as I won't be including such commands unless we're doing tricky compiler stuff again (which we will later on).}
+        
+        You should see ``Hello World!" (minus the quotation marks) printed to the screen. Congratulations, you're now a C programmer. 
+    }
+
+ 	\frame{
+		\frametitle{How to build your first *useful* program}
+		\framesubtitle{Your turn!}   
+
+	    Make a copy of `my\_first\_useful\_program.c' called `my\_second\_useful\_program.c', and change the text to print your name.
+    }
+    
+\end{document}

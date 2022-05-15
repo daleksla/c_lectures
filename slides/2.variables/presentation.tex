@@ -1,0 +1,236 @@
+\documentclass{beamer}
+\usecolortheme{fly}
+
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+\usepackage{minted}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\title{C Lectures}
+\subtitle{2.Variables}
+\author{Salih MSA}
+
+\begin{document}
+	\frame{\titlepage}
+	
+	\frame{
+	    \frametitle{Abstract}
+	    By the end of this presentation, you would've understood the following:
+	    
+	    \begin{itemize}
+	        \item Different datatypes in C
+	        \item The how of variable usage
+	        \item The why of variable usage
+	    \end{itemize}
+	}
+	
+	\frame{
+		\frametitle{Primitive types}
+		\framesubtitle{Integer types - 1}
+		
+		In C exists the following basic integer types:
+		
+		\begin{itemize}
+            \item \textbf{(signed) char} - 1 byte in size. used typically to store characters of values [−127, +127]
+            \item unsigned char - same size as above. stores characters of values [0, +255]
+            
+            \item (signed) short (int) - 2 bytes in size and is basically a smaller version of a normal Int. range: [−32,767, +32,767]
+            \item unsigned short (int) - same size as above. range: [0, 65,535] 
+            
+            \item \textbf{(signed) int} - 4 bytes in size. probably one of the most commonly use types. range: [−32,767, +32,767] 
+            \item \textbf{unsigned int} - same size as above. range: [0, 65,535]
+            
+            \item (signed) long (int) - 4 bytes in size. range: [−2,147,483,647, +2,147,483,647]
+            \item unsigned long (int) - same size as above. range: [0, 4,294,967,295] 
+		\end{itemize}
+    }
+
+	\frame{
+		\frametitle{Datatypes}
+		\framesubtitle{Integer types - 2}
+		
+		\begin{itemize}
+            \item (signed) long long (int) - 8 bytes in size. range: [−2,147,483,647, +2,147,483,647]
+            \item unsigned long long (int) - same size as above. range: [0, 4,294,967,295]
+		\end{itemize}
+
+        Types in bold are most commonly used. You should ideally stick to these unless there's a specific need to use otherwise. 
+    }
+    
+	\frame{
+		\frametitle{Datatypes}
+		\framesubtitle{Floating-point types}
+		
+		In C exists the following basic floating-point types:
+		
+		\begin{itemize}
+            \item \textbf{float} - (typically) 4 bytes \footnotemark . range: [1.17549e-38, 3.40282e+38]
+            \item \textbf{double} - (typically) 8 bytes \footnotemark . range: [2.22507e-308, 1.79769e+308]
+            \item long double - size varies between systems \footnotemark
+            
+		\end{itemize}
+
+        Types in bold are most commonly used. You should ideally stick to these unless there's a specific need to use otherwise. 
+
+        \footnotetext[1]{Following IEEE 754 single-precision binary floating-point format convention}
+        \footnotetext[2]{Following IEEE 754 double-precision binary floating-point format convention}
+        \footnotetext[3]{Following IEEE 754 quadruple-precision binary floating-point format convention: 16 bytes. x86 format: 10 bytes (but typically 12/16 bits in memory due to padding), or same as double in other cases}
+	}
+	
+	\frame{
+		\frametitle{The how of variable usage}
+		\framesubtitle{Variable use - 1}
+		
+		In C, we need to manually declare variables with a statement PRIOR to using them, using the following structure:\\
+		
+        data-type variable-name ;\\
+        
+        We can then use the variable, using the name we gave it, to alter the variable's value henceforth. For example:
+        
+        \inputminted[
+            framesep=2mm,
+            baselinestretch=1.2,
+            fontsize=\footnotesize,
+            linenos
+            ]{c}{basic_c.c}
+        
+    }
+
+	\frame{
+		\frametitle{The how of variable usage}
+		\framesubtitle{Variable use - 2}
+		
+		In the example above, what I did was \textbf{declare} the variable, then \textbf{initialise/define} it's value afterwards. However, this can be done on the same line (moreover, I recommend doing it on the same line). 
+        
+        \inputminted[
+            framesep=2mm,
+            baselinestretch=1.2,
+            fontsize=\footnotesize,
+            linenos
+            ]{c}{basic_c_more.c}
+        
+    }
+
+	\frame{
+		\frametitle{The how of variable usage}
+		\framesubtitle{Theory - Restrictions}
+		
+		There are (sane) restrictions to variable use:
+		
+		\begin{itemize}
+		    \item Variables can only be \textbf{declared} where independent statements are valid. For example, they cannot be on the right hand of an equals symbol or on either side of a boolean expression \footnotemark (logically because how can you assign a declaration - it makes no sense)
+		    \item Variable identifiers are restricted to the scope they were defined in (see next slide).
+		\end{itemize}
+	
+	    \footnotetext[4]{When we come to conditional statements, you will understand boolean expressions. What I mean by that is stuff like `x is equal / not equal to y', `x is larger / smaller than y', etc.}
+	}
+	
+	\frame{
+	    \frametitle{The how of variable usage}
+	    \framesubtitle{Scope - 1}
+	    
+	    A scope in programming is a region of the program where a defined variable exists - once we have exited it fully, it is no longer accessible. Scopes in C are defined by what is in between of a pair of curly braces (i.e. \{\}). Take the following code example:
+	    \inputminted[
+            framesep=2mm,
+            baselinestretch=1.2,
+            fontsize=\footnotesize,
+            linenos
+            ]{c}{scope.c}
+	}
+
+	\frame{
+	    \frametitle{The how of variable usage}
+	    \framesubtitle{Scope - 2}
+	    
+	    In the example above:
+	    
+	    \begin{itemize}
+	        \item Global scope \footnotemark - variables declared here can be accessed from anywhere. 
+	        \item Main function's primary scope - variables declared in the main function are only accessible in the main function's scopes and has access to all the scopes it is in (itself and the global scope)
+	        \item Main function's inner/local scope - variables declared in the local scope of the main function are only accessible in the local scope and has access to all the scopes it is in (itself, the main primary scope and the global scope)
+        \end{itemize}
+
+	    \footnotetext[5]{GLOBAL VARIABLES (variables defined in the global scope) are evil. Such reckless access to data makes code harder to debug and it's 100\% availability makes it more error-prone. I was showing it purely for demonstrative examples. See \url{https://www.tutorialspoint.com/why-are-global-variables-bad-in-c-cplusplus}}
+	}
+
+	\frame{
+	    \frametitle{The how of variable usage}
+	    \framesubtitle{Your turn!}
+	    
+	    Copy `my\_first\_program.c' from the previous lecture and call it `variable\_use.c'. In it's main function, create the following variables \textbf{exactly as requested}:
+	    
+	    \begin{itemize}
+	        \item An integer type called x. DECLARE IT ONLY.
+	        \item A float called y. Declare and initialise the variable on the same line with the value 5.1
+	        \item A char called m. Declare and initialise the variable on the same line with your favourite letter
+	    \end{itemize}
+	    
+	    Hint: I have not told you HOW to assign to characters yet. Figure it out.
+	}
+	
+	\frame{
+	    \frametitle{The why of variable usage}
+	    \framesubtitle{Theory - 1}
+	    
+	    Previously explained has been how to make use of variables. However, I feel I should explain WHY C makes you declare variables as you do (i.e. why it makes you state the variable, why mention the type, why scope it) - it comes down to how memory is generally allocated and used by C programs:
+	    \begin{enumerate}
+	        \item There is an indicator used to internally track the start \& end of a local stack frame (i.e. a scope \footnotemark)
+	        \item When a scope is created, the start indicator jumps to the current position of the end indicator \footnotemark
+        \end{enumerate}
+
+	    \footnotetext[6]{Here's the thing: it is much more typical that NAMED scopes (i.e. functions) go through this whole process, as opposed to these inner scopes. But the compiler can TECHNICALLY do whatever it needs to do to produce a code which performs well - this can be framing everything to framing nothing. There's also stack frame related stuff done to conform to the host system's Application Binary Interface. 
+	    I guess what I am trying to say a bunch of these steps (all except 3 on the next page) are implementation specific. But it does happen and it is bogstandard assembly logic, so listen please. Love, Salih x}
+	   \footnotetext[7]{See footnote 6}
+	}
+	
+	\frame{
+	    \frametitle{The why of variable usage}
+	    \framesubtitle{Theory - 2}
+	    
+	    \begin{enumerate}
+	        \setcounter{enumi}{2}
+	        \item For each variable added, we write x amount of bytes from the last memory entry, where x is the SIZE of the variable's datatype
+	        \item When it comes to the end of the scope, the end indicator hops back to the position of the start indicator and the start indicator moves back to where it was before, effectively making all the variables in the now-exited scope ready to be overwritten again  \footnotemark
+	    \end{enumerate}
+	   
+	   \footnotetext[8]{See footnote 6}
+	}
+
+	\frame{
+	    \frametitle{The why of variable usage}
+	    \framesubtitle{Example - Program - 1}
+	    
+	    Here is an example C function with comments \footnotemark:
+	 
+	    \inputminted[
+            framesep=2mm,
+            baselinestretch=1.2,
+            fontsize=\footnotesize,
+            linenos
+            ]{c}{mem.c}
+ 
+ 	    \footnotetext[9]{Note the stack size *increases* backwards, hence why it shows, when adding variables, the end tracker is made to point to smaller addresses}.    
+    }
+
+    \frame{
+	    \frametitle{The why of variable usage}
+	    \framesubtitle{Example - Program - 2}
+	    
+        The below is an example of corresponding yet simple assembly code \footnotemark: 
+        
+	    \inputminted[
+            framesep=1mm,
+            baselinestretch=1.2,
+            fontsize=\footnotesize,
+            linenos
+            ]{asm}{scope.asm}
+
+        \footnotetext[10]{I know this is a C tutorial BUT I felt that this was important to show you why scoping works as it does - these are an example of what the compiler might add behind the scenes. If you want to run this assembly: `nasm -felf64 bye\_asm.asm && gcc bye\_asm.o && ./a.out', where GCC is used for final linkage because I wanted code to fit on the slide}
+
+    }
+
+\end{document}

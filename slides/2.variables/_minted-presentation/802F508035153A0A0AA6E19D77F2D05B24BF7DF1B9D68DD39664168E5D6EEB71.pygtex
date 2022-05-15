@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{bigger\PYGZus{}scope}\PYG{+w}{ }\PYG{p}{;}\PYG{+w}{ }\PYG{c+cm}{/* global variable */}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{big\PYGZus{}scope}\PYG{+w}{ }\PYG{p}{;}\PYG{+w}{ }\PYG{c+cm}{/* declare variable in main scope */}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{c+cm}{/* create a scope (indicated by \PYGZob{}\PYGZcb{}) */}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{little\PYGZus{}scope}\PYG{+w}{ }\PYG{p}{;}\PYG{+w}{ }\PYG{c+cm}{/* variable in local scope */}
+\PYG{+w}{        }\PYG{n}{little\PYGZus{}scope}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{p}{;}\PYG{+w}{ }
+\PYG{+w}{        }\PYG{n}{big\PYGZus{}scope}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{bigger\PYGZus{}scope}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} compiles, creates executable called a.out}
+\PYG{c+c1}{\PYGZsh{} using standard C}
+gcc \PYGZhy{}\PYGZhy{}std\PYG{o}{=}c89 my\PYGZus{}first\PYGZus{}useful\PYGZus{}program.c
+
+\PYG{c+c1}{\PYGZsh{} *nix command to run a.out file}
+./a.out
+\PYG{c+c1}{\PYGZsh{}  ( ./ means the executable is in this directory)}
+\end{Verbatim}

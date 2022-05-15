@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nf}{global}\PYG{+w}{    }\PYG{n+no}{main}
+\PYG{n+nf}{section}\PYG{+w}{   }\PYG{n+no}{.text}
+\PYG{n+nl}{main:}
+\PYG{+w}{	}\PYG{n+nf}{push}\PYG{+w}{	}\PYG{n+no}{rbp}\PYG{+w}{ }\PYG{c+c1}{; store old base}
+\PYG{+w}{	}\PYG{n+nf}{mov}\PYG{+w}{	}\PYG{n+no}{rbp}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{rsp}\PYG{+w}{ }\PYG{c+c1}{; set base as end}
+\PYG{+w}{	}\PYG{n+nf}{sub}\PYG{+w}{ }\PYG{n+no}{rsp}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{  }\PYG{c+c1}{; minus 4 bytes from end}
+\PYG{+w}{	}\PYG{n+nf}{mov}\PYG{+w}{	}\PYG{n+no}{WORD}\PYG{+w}{ }\PYG{p}{[}\PYG{n+no}{rsp}\PYG{p}{],}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{c+c1}{; mov value 2 to variable at end}
+\PYG{+w}{	}\PYG{n+nf}{mov}\PYG{+w}{ }\PYG{n+no}{rsp}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{rbp}\PYG{+w}{ }\PYG{c+c1}{; set value of end as old value (held currently by start)}
+\PYG{+w}{	}\PYG{n+nf}{pop}\PYG{+w}{	}\PYG{n+no}{rbp}\PYG{+w}{ }\PYG{c+c1}{; set base back to old value}
+\PYG{+w}{	}\PYG{n+nf}{mov}\PYG{+w}{ }\PYG{n+no}{eax}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{c+c1}{; set return code to 0 (ignore)}
+\PYG{+w}{	}\PYG{n+nf}{ret}\PYG{+w}{ }\PYG{c+c1}{; exit function}
+\end{Verbatim}

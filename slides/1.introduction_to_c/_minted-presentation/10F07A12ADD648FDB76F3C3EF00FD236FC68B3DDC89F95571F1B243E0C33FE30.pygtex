@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}stdio.h\PYGZgt{}}
+\PYG{c+cm}{/* library of input / output functions */}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Hello World!\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{;}\PYG{+w}{ }
+\PYG{+w}{    }\PYG{c+cm}{/* call print function imported */}
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
